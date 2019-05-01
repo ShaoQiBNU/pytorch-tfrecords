@@ -26,7 +26,7 @@ class get_data():
 
     ##################### 输入数据流 ######################
     def my_input_fn(self, filenames, batch_size):
-        dataset = tf.data.TFRecordDataset(filenames)
+        dataset = tf.contrib.data.TFRecordDataset(filenames)
         dataset = dataset.map(self.parse_data)
         dataset = dataset.batch(batch_size)
 
