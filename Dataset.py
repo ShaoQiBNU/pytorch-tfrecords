@@ -7,16 +7,15 @@ from read_tfrecords import get_data
 class FlowerDataset(torch.utils.data.Dataset):
 
     ############ init ###########
-    def __init__(self, filenames, batch_size, train=True, transform=None, target_transform=None):
+    def __init__(self, filenames, data_size, train=True, transform=None):
         self.transform = transform
         self.train = train
-        self.target_transform = target_transform
 
         if self.train:
-            self.train_data, self.train_label = get_data(filenames, batch_size).main()
+            self.train_data, self.train_label = get_data(filenames, data_size).main()
 
         else:
-            self.test_data, self.test_label = get_data(filenames, batch_size).main()
+            self.test_data, self.test_label = get_data(filenames, data_size).main()
 
 
     ############ get data ###########

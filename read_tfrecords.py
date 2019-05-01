@@ -9,10 +9,10 @@
 import tensorflow as tf
 
 class get_data():
-    def __init__(self, filenames, batch_size):
+    def __init__(self, filenames, data_size):
 
         self.filenames = filenames
-        self.batch_size = batch_size
+        self.data_size = data_size
 
     ##################### 解析tfrecords ######################
     def parse_data(self, example_proto):
@@ -25,10 +25,10 @@ class get_data():
         return image, label
 
     ##################### 输入数据流 ######################
-    def my_input_fn(self, filenames, batch_size):
+    def my_input_fn(self, filenames, data_size):
         dataset = tf.contrib.data.TFRecordDataset(filenames)
         dataset = dataset.map(self.parse_data)
-        dataset = dataset.batch(batch_size)
+        dataset = dataset.batch(data_size)
 
         iterator = dataset.make_one_shot_iterator()
         features, labels = iterator.get_next()
@@ -37,7 +37,7 @@ class get_data():
 
     def main(self):
 
-        features, labels = self.my_input_fn(self.filenames, self.batch_size)
+        features, labels = self.my_input_fn(self.filenames, self.data_size)
 
         with tf.Session() as sess:
             ########### 初始化 ###########
