@@ -18,6 +18,7 @@ class FlowerDataset(torch.utils.data.Dataset):
         else:
             self.test_data, self.test_label = get_data(filenames, batch_size).main()
 
+
     ############ get data ###########
     def __getitem__(self, index):
 
